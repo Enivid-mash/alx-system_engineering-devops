@@ -3,33 +3,13 @@
 
 hour=0
 minute=1
-count=1
-
-while [ $count -le 767 ]
+while [ $hour -le 12 ];
 do
-    if [ $minute -eq 60 ]
-    then
-        minute=1
-        hour=$((hour+1))
-    fi
-
-    if [ $hour -eq 13 ]
-    then
-        break
-    fi
-
-    if [ $minute -eq 1 ]
-    then
-        echo "Hour: $hour"
-    fi
-
-    if [ $minute -le 9 ]
-    then
-        echo "0$minute"
-    else
-        echo $minute
-    fi
-
-    minute=$((minute+1))
-    count=$((count+1))
+	echo "Hour: $hour"
+	minute=1
+	while [ $minute -le 59 ]; do
+		echo $minute
+		((minute++))
+	done
+	((hour++))
 done
