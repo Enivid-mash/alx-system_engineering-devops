@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+# Displays all active IPv4 addresses
+
+# Fetch the network interface configuration using ifconfig
+network_info=$(ifconfig)
+
+# Extract IPv4 addresses using grep and cut
+ipv4_addresses=$(echo "$network_info" | grep -Eo "inet (addr:)?([0-9]*\.){3}[0-9]*" | cut -b 11-)
+
+# Print the extracted IPv4 addresses
+echo "$ipv4_addresses"

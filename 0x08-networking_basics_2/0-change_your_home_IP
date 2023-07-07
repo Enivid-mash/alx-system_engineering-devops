@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+# Configures an Ubuntu server by modifying the hosts file
+
+# Create a backup of the hosts file
+cp /etc/hosts ~/hosts.new
+
+# Update the hosts file with the desired configurations using sed
+sed -i 's/127.*$/127.0.0.1 localhost\n8.8.8.8 facebook.com/' ~/hosts.new
+
+# Overwrite the original hosts file with the modified one
+cp -f ~/hosts.new /etc/hosts
