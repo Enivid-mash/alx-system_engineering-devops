@@ -7,6 +7,7 @@ package { 'flask':
 
 # Install werkzeug using pip3
 package { 'werkzeug':
-	ensure => '2.1.1',
-	provider => 'pip3'
+  ensure   => '2.1.1',
+  provider => 'pip3',
+  require  => Package['flask'],
 }
