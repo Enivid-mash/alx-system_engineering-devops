@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+SERVER="server_address"
+ssh -i ~/.ssh/school ubuntu@$SERVER
+exit 0
