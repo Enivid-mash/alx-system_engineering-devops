@@ -1,0 +1,6 @@
+# SSH configuration file
+
+PreferredAuthentications publickey
+HostName 18.234.168.118 
+User ubuntu
+IdentityFile ~/.ssh/school
