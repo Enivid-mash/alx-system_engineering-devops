@@ -10,4 +10,4 @@ sudo sed -i 's/#listen 80;/listen 80;/g' /etc/nginx/sites-available/default
 
 sudo service nginx restart
 
-sudo echo "Hello World!" > /index.html
+sudo echo "Hello World!" > /var/www/html/index.html 
