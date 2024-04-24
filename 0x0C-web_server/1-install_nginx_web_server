@@ -10,4 +10,6 @@ ufw allow 'Nginx HTTP'
 
 sudo service nginx restart
 
-sudo echo "Hello world!" > /var/www/html/index.html 
+sudo echo "Hello World!" > /var/www/html/index.html 
+
+sudo service nginx restart
