@@ -8,6 +8,6 @@ sudo service nginx start
 
 ufw allow 'Nginx HTTP'
 
-sudo service nginx restart
+sudo service nginx start
 
 sudo echo "Hello World!" > /var/www/html/index.html 
