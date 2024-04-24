@@ -1,4 +1,4 @@
-sudo service nginx restart#!/usr/bin/env bash
+#!/usr/bin/env bash
 # Bash script that installs and configure nginx 
 
 sudo apt update
