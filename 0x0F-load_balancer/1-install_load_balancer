@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+# Bash script to install and configure HAProxy on load balancer server
+
+
+sudo apt-get -y update
+sudo apt-get -y install haproxy=2.0\*
+
+server_config=\
+"
+frontend enivid-frontend
+        bind *:80
+        mode http
+        default_backend enivid-backend
+backend enivid-backend
+        balance roundrobin
+        server 253151-web-01 18.234.168.118:80 check
+        server 253151-web-02 54.236.44.71:80 check
+"
+echo "$server_config" | sudo tee -a /etc/haproxy/haproxy.cfg
+
+echo "ENABLED=1" | sudo tee -a /etc/default/haproxy
+
+sudo service haproxy restart
