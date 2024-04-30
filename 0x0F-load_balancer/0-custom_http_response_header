@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+# configures an nginx server to include a custom key value pair
+#  in an http response header
+
+sudo apt-get update
+sudo apt-get install -y nginx
+
+sudo ufw allow 'Nginx HTTP'
+
+sudo mkdir -p /var/www/html
+
+sudo chmod -R 755 /var/www
+
+echo "Hello World!" | sudo tee /var/www/html/index.html
+
+replacement1="server_name _;\n\tadd_header X-Served-By \$hostname;\n\trewrite ^\/redirect_me http:\/\/www.google.com permanent;"
+sudo sed -i "s/server_name _;/$replacement1/" /etc/nginx/sites-enabled/default
+
+echo "Ceci n'est pas une page" | sudo tee /var/www/html/404.html
+
+replacement2="listen 80 default_server;\n\terror_page 404 \/404.html;\n\tlocation = \/404.html {\n\t\troot \/var\/www\/html;\n\t\tinternal;\n\t}"
+
+sudo sed -i "s/listen 80 default_server;/$replacement2/" /etc/nginx/sites-enabled/default
+
+sudo service nginx restart
