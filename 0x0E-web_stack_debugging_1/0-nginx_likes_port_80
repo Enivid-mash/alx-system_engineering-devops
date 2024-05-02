@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+# Restores nginx installation to initial state of installation
+
+sudo service stop nginx
+
+sudo apt-get remove --purge nginx nginx-common nginx-core
+
+sudo rm -rf /etc/nginx/
+
+sudo rm -rf /var/log/nginx/ /var/www/
+
+sudo apt-get install nginx
+
+sudo service start nginx
