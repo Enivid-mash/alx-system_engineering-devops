@@ -12,3 +12,7 @@ sudo rm -rf /var/log/nginx/ /var/www/
 sudo apt-get install nginx
 
 sudo service start nginx
+
+ufw allow 'Nginx HTTP'
+
+sudo service restart nginx
