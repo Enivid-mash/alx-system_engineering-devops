@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+# displays information about the DNS records of subdomains.
+
+dns_info () {
+    response=$(dig +short "$2"."$1" | awk '{printf "%s ", $0}')
+    
+    # Extract DNS record type and IP address from the response
+    ip_address=$(echo "$response" | awk '{print $1}')
+    # record_type=$(echo "$response" | awk '{print $2}')
+    
+    # Print the DNS information in the requested format
+    echo "The subdomain $2 is a A record and points to $ip_address"
+}
+
+# Check the number of command-line arguments provided
+if [ "$#" == 1 ]; then
+    # If only one argument is provided, use predefined subdomains to get DNS information
+    dns_info "$1" "www"
+    dns_info "$1" "lb-01"
+    dns_info "$1" "web-01"
+    dns_info "$1" "web-02"
+elif [ "$#" == 2 ]; then
+    # If two arguments are provided, use the specified subdomain to get DNS information
+    dns_info "$1" "$2"
+fi
