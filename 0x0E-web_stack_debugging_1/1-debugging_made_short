@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
 # Debugging nginx server 
-sudo ln -sf /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
+sudo sed -i 's/sites-enabled/sites-available/g' "/etc/nginx/nginx.conf"
+sudo service nginx restart
 sudo service nginx stop
-pkill -o nginx
