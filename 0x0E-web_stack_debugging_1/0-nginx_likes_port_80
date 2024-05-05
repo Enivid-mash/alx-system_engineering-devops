@@ -1,18 +1,5 @@
 #!/usr/bin/env bash
-# Restores nginx installation to initial state of installation
+# Debugging nginx server
 
-sudo service stop nginx
-
-sudo apt-get remove --purge nginx nginx-common nginx-core
-
-sudo rm -rf /etc/nginx/
-
-sudo rm -rf /var/log/nginx/ /var/www/
-
-sudo apt-get install nginx
-
-sudo service start nginx
-
-ufw allow 'Nginx HTTP'
-
-sudo service restart nginx
+sudo sed -i 's/sites-enabled/sites-available/g' "/etc/nginx/nginx.conf";
+sudo service nginx restart
