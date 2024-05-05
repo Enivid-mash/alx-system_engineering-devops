@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
 # Debugging nginx server 
-sed -i 's/8080/80/g' /etc/nginx/sites-enabled/default
+sudo sed -i 's/sites-enabled/sites-available/g' "/etc/nginx/nginx.conf"
 service nginx restart
 service nginx stop
