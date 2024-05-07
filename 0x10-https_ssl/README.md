@@ -3,5 +3,5 @@
 |File Name  |Description  |
 |:-----------:|----------------------|
 | `0-world_wide_web` |Bash script that querys DNS records and displays basic information|
-| `1-haproxy_ssl_termination` ||
-| `100-redirect_http_to_https` ||
+| `1-haproxy_ssl_termination` |Create a certificate using certbot and configure HAproxy to accept encrypted traffic|
+| `100-redirect_http_to_https` |Configure HAproxy to automatically redirect HTTP traffic to HTTPS.|
