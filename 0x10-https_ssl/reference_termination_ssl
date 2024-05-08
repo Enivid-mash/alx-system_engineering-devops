@@ -1,0 +1,12 @@
+Go to https://certbot.eff.org/instructions, choose your <HAproxy on Ubuntu20>
+
+sudo apt update && sudo apt upgrade -y
+sudo apt-get remove certbot
+sudo snap install --classic certbot
+sudo service haproxy stop
+sudo certbot certonly --standalone --preferred-challenges http --http-01-port 80 -d www.enivid.tech
+sudo ls /etc/letsencrypt/live/www.enivid.tech
+sudo mkdir -p /etc/haproxy/certs
+DOMAIN='www.enivid.tech' sudo -E bash -c 'cat /etc/letsencrypt/live/$DOMAIN/fullchain.pem /etc/letsencrypt/live/$DOMAIN/privkey.pem > /etc/haproxy/certs/$DOMAIN.pem'
+sudo chmod -R go-rwx /etc/haproxy/certs
+sudo nano /etc/haproxy/haproxy.cfg
