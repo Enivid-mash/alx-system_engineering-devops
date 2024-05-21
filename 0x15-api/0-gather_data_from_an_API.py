@@ -39,10 +39,6 @@ def print_employee_tasks(employee_name, done_count, total_tasks, done_tasks):
 
 
 if __name__ == '__main__':
-    if len(sys.argv) != 2:
-        print("Usage: ./script.py <employee_id>")
-        sys.exit(1)
-
     employee_id = sys.argv[1]
     employee_name, tasks = fetch_employee_data(employee_id)
     done_count, done_tasks = process_tasks(tasks)
