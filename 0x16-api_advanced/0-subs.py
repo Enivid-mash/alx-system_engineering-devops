@@ -1,37 +1,28 @@
 #!/usr/bin/python3
+
 """
-Retrieves the number of subscribers for a given subreddit.
+Retrieve the number of subscribers for a given subreddit.
 """
 
-import requests
+from requests import get
 
 
-def get_subscriber_count(subreddit):
+def number_of_subscribers(subreddit):
     """
-    Fetches the subscriber count from Reddit's API for a specific subreddit.
-
-    Args:
-        subreddit: The name of the subreddit (e.g., "learnpython").
-
-    Returns:
-        The number of subscribers for the subreddit, or 0 if an error occurs.
+    Query the Reddit API and return the number of subscribers
+    (not active users, total subscribers) for a given subreddit.
     """
 
-    if not subreddit or not isinstance(subreddit, str):
+    if subreddit is None or not isinstance(subreddit, str):
         return 0
 
-    # Set a custom user-agent header
-    headers = {'User-Agent': 'MyCoolScript/1.0'}
-
-    # Build the API endpoint URL with string formatting
-    url = f"https://www.reddit.com/r/{subreddit}/about.json"
+    headers = {'User-agent': 'Google Chrome Version 81.0.4044.129'}
+    api_url = 'https://www.reddit.com/r/{}/about.json'.format(subreddit)
+    response = get(api_url, headers=headers)
+    data = response.json()
 
     try:
-        response = requests.get(url, headers=headers)
-        response.raise_for_status()
+        return data.get('data').get('subscribers')
 
-        data = response.json()
-        return data.get('data', {}).get('subscribers', 0)
-
-    except requests.exceptions.RequestException:
+    except Exception:
         return 0
