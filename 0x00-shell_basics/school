@@ -1,0 +1,4 @@
+# school.mgc - Magic file for detecting School data files. to compile - file -C -m school
+
+0 string SCHOOL School data
+!:mime School
